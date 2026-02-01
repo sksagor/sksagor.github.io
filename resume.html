@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - SKSAM</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --bg-dark: #0a0e1a;
+            --bg-card: #141824;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent: #667eea;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        header {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--primary); }
+
+        .resume-container {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 0 5%;
+        }
+
+        .resume-header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+            margin-bottom: 3rem;
+        }
+
+        .resume-header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .resume-header .title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .contact-info a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover { color: var(--primary); }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.3rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .experience-item, .project-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .experience-item h3, .project-item h3 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .meta {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        ul.achievements {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        ul.achievements li {
+            padding: 0.3rem 0 0.3rem 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        ul.achievements li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 2rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+        }
+
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .resume-header h1 { font-size: 2rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">SKSAM</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="resume.html">Resume</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="resume-container">
+        <div class="resume-header">
+            <h1>SKSAM</h1>
+            <p class="title">Senior Python Developer & AI Engineer</p>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 1rem auto;">
+                Specialized in building production-grade AI systems, automation tools, and full-stack applications. 
+                Unique blend of SEO expertise and software engineering.
+            </p>
+            <div class="contact-info">
+                <a href="mailto:your.email@example.com">📧 your.email@example.com</a>
+                <a href="https://github.com/yourusername">💻 GitHub</a>
+                <a href="https://linkedin.com/in/yourprofile">💼 LinkedIn</a>
+                <a href="https://sksam.pythonanywhere.com">🌐 Portfolio Website</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>Python (Advanced)</li>
+                        <li>JavaScript/TypeScript</li>
+                        <li>SQL</li>
+                        <li>Bash/Shell</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Backend & APIs</h3>
+                    <ul class="skill-list">
+                        <li>FastAPI</li>
+                        <li>Django / Flask</li>
+                        <li>RESTful API Design</li>
+                        <li>GraphQL</li>
+                        <li>WebSockets</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>AI & Machine Learning</h3>
+                    <ul class="skill-list">
+                        <li>TensorFlow / PyTorch</li>
+                        <li>HuggingFace Transformers</li>
+                        <li>Scikit-learn</li>
+                        <li>NLP (SpaCy, NLTK)</li>
+                        <li>Prophet / Time Series</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Data & Databases</h3>
+                    <ul class="skill-list">
+                        <li>PostgreSQL / MySQL</li>
+                        <li>MongoDB</li>
+                        <li>Redis</li>
+                        <li>Pandas / NumPy</li>
+                        <li>Data Visualization</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Frontend Development</h3>
+                    <ul class="skill-list">
+                        <li>React / Vue.js</li>
+                        <li>HTML5 / CSS3</li>
+                        <li>Tailwind CSS</li>
+                        <li>Chart.js / D3.js</li>
+                        <li>HTMX</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>DevOps & Tools</h3>
+                    <ul class="skill-list">
+                        <li>Docker / Docker Compose</li>
+                        <li>Git / GitHub Actions</li>
+                        <li>AWS / Digital Ocean</li>
+                        <li>Nginx / Gunicorn</li>
+                        <li>CI/CD Pipelines</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Web Scraping & Automation</h3>
+                    <ul class="skill-list">
+                        <li>Scrapy / BeautifulSoup</li>
+                        <li>Selenium / Playwright</li>
+                        <li>API Integration</li>
+                        <li>Task Scheduling (Celery)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>SEO & Marketing</h3>
+                    <ul class="skill-list">
+                        <li>Technical SEO</li>
+                        <li>Google Analytics / GSC</li>
+                        <li>Keyword Research</li>
+                        <li>Content Strategy</li>
+                        <li>SERP Analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="project-item">
+                <h3>AI-Powered Sentiment Analysis Platform</h3>
+                <p class="meta">FastAPI • HuggingFace • PostgreSQL • React</p>
+                <p class="description">
+                    Production-ready sentiment analysis system processing 50k+ texts/hour with 92% accuracy. 
+                    Features real-time analysis, CSV batch processing, and developer API.
+                </p>
+                <ul class="achievements">
+                    <li>Built ensemble ML model combining BERT, VADER, and TextBlob</li>
+                    <li>Implemented Redis caching reducing API response time to <200ms</li>
+                    <li>Created interactive dashboard with Chart.js for data visualization</li>
+                    <li>Deployed with Docker achieving 99.9% uptime</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <h3>SEO Rank Tracker & Analyzer</h3>
+                <p class="meta">FastAPI • SERP APIs • MongoDB • Chart.js</p>
+                <p class="description">
+                    Professional SEO monitoring platform tracking 10k+ keywords daily with competitor analysis and automated reporting.
+                </p>
+                <ul class="achievements">
+                    <li>Automated rank tracking reducing manual work from 5hrs/week to zero</li>
+                    <li>Built predictive ML model for ranking trend forecasting</li>
+                    <li>Integrated multiple SERP APIs with intelligent failover system</li>
+                    <li>Generated $50k+ in keyword opportunities for clients</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <h3>Crypto Price Prediction System</h3>
+                <p class="meta">FastAPI • Scikit-learn • Plotly • CoinGecko API</p>
+                <p class="description">
+                    ML-powered cryptocurrency analytics with real-time price tracking, prediction models, and automated alerts.
+                </p>
+                <ul class="achievements">
+                    <li>Developed time-series ML models with 78% prediction accuracy</li>
+                    <li>Implemented WebSocket for real-time price updates</li>
+                    <li>Created interactive Plotly dashboards for trend analysis</li>
+                    <li>Built automated alert system for price movements</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <h3>Business Sales Forecasting System</h3>
+                <p class="meta">FastAPI • Prophet • Pandas • ReportLab</p>
+                <p class="description">
+                    Predictive analytics platform for sales forecasting with automated PDF reports and business recommendations.
+                </p>
+                <ul class="achievements">
+                    <li>Implemented Prophet algorithm for accurate sales predictions</li>
+                    <li>Automated weekly report generation with actionable insights</li>
+                    <li>Built admin panel for data management and visualization</li>
+                    <li>Helped businesses improve forecasting accuracy by 35%</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="experience-item">
+                <h3>Senior Python Developer & AI Specialist</h3>
+                <p class="meta">Freelance • 2020 - Present</p>
+                <ul class="achievements">
+                    <li>Developed 15+ production AI/ML applications for diverse clients</li>
+                    <li>Specialized in NLP, sentiment analysis, and predictive modeling</li>
+                    <li>Built RESTful APIs handling millions of requests monthly</li>
+                    <li>Implemented CI/CD pipelines reducing deployment time by 70%</li>
+                    <li>Mentored junior developers on best practices and clean code</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>SEO Specialist & Automation Engineer</h3>
+                <p class="meta">Digital Marketing Agency • 2018 - 2020</p>
+                <ul class="achievements">
+                    <li>Increased organic traffic by 250% through technical SEO and automation</li>
+                    <li>Developed Python tools reducing manual SEO tasks by 80%</li>
+                    <li>Built custom rank tracking and reporting systems</li>
+                    <li>Managed SEO campaigns for 30+ enterprise clients</li>
+                    <li>Combined programming skills with SEO expertise for unique solutions</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Education & Certifications</h2>
+            
+            <div class="experience-item">
+                <h3>Bachelor of Science in Computer Science</h3>
+                <p class="meta">University Name • 2014 - 2018</p>
+                <p class="description">Focus on Software Engineering and Machine Learning</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                <div style="padding: 1rem; background: var(--bg-card); border-radius: 8px;">
+                    <strong style="color: var(--primary);">AWS Certified</strong>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem;">Solutions Architect</p>
+                </div>
+                <div style="padding: 1rem; background: var(--bg-card); border-radius: 8px;">
+                    <strong style="color: var(--primary);">TensorFlow Developer</strong>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem;">Certificate</p>
+                </div>
+                <div style="padding: 1rem; background: var(--bg-card); border-radius: 8px;">
+                    <strong style="color: var(--primary);">Advanced SEO</strong>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem;">Certification</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="#" class="download-btn" onclick="alert('Add your actual PDF resume link here'); return false;">
+                📄 Download PDF Resume
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SKSAM. Python Developer & AI Engineer.</p>
+    </footer>
+</body>
+</html>
