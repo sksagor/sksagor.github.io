@@ -3,459 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - SKSAM</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Resume | SAM BAQUIBILLAH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #00ff88;
-            --bg-dark: #0a0e1a;
-            --bg-card: #141824;
-            --text-primary: #ffffff;
-            --text-secondary: #a0aec0;
-            --accent: #667eea;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.7;
-        }
-
-        header {
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            background: rgba(10, 14, 26, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
-
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover { color: var(--primary); }
-
-        .resume-container {
-            max-width: 900px;
-            margin: 4rem auto;
-            padding: 0 5%;
-        }
-
-        .resume-header {
-            text-align: center;
-            padding: 3rem 0;
-            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
-            margin-bottom: 3rem;
-        }
-
-        .resume-header h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .resume-header .title {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .contact-info a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-info a:hover { color: var(--primary); }
-
-        .section {
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .skill-category {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .skill-category h3 {
-            font-size: 1.1rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            padding: 0.3rem 0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .experience-item, .project-item {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .experience-item h3, .project-item h3 {
-            font-size: 1.3rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .meta {
-            color: var(--accent);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        ul.achievements {
-            list-style: none;
-            margin-left: 0;
-        }
-
-        ul.achievements li {
-            padding: 0.3rem 0 0.3rem 1.5rem;
-            position: relative;
-            color: var(--text-secondary);
-        }
-
-        ul.achievements li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-        }
-
-        .download-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--primary);
-            color: var(--bg-dark);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s;
-            margin-top: 2rem;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
-        }
-
-        footer {
-            padding: 3rem 5%;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-        }
-
-        @media (max-width: 768px) {
-            .resume-header h1 { font-size: 2rem; }
-            .skills-grid { grid-template-columns: 1fr; }
+        * { font-family: 'Inter', sans-serif; }
+        .nav-active { color: #3b82f6; border-bottom: 2px solid #3b82f6; }
+        .resume-section { page-break-inside: avoid; }
+        .print-only { display: none; }
+        @media print {
+            .no-print { display: none; }
+            .print-only { display: block; }
+            body { font-size: 12px; }
         }
     </style>
 </head>
-<body>
-    <header>
-        <a href="index.html" class="logo">SKSAM</a>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="resume.html">Resume</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-
-    <div class="resume-container">
-        <div class="resume-header">
-            <h1>SKSAM</h1>
-            <p class="title">Senior Python Developer & AI Engineer</p>
-            <p style="color: var(--text-secondary); max-width: 600px; margin: 1rem auto;">
-                Specialized in building production-grade AI systems, automation tools, and full-stack applications. 
-                Unique blend of SEO expertise and software engineering.
-            </p>
-            <div class="contact-info">
-                <a href="mailto:your.email@example.com">📧 your.email@example.com</a>
-                <a href="https://github.com/yourusername">💻 GitHub</a>
-                <a href="https://linkedin.com/in/yourprofile">💼 LinkedIn</a>
-                <a href="https://sksam.pythonanywhere.com">🌐 Portfolio Website</a>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white shadow-sm z-50 no-print">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-xl font-bold text-gray-800"><span class="text-blue-600">SAM</span>BAQUIBILLAH</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="font-medium text-gray-700 hover:text-blue-600 py-2">Home</a>
+                    <a href="projects.html" class="font-medium text-gray-700 hover:text-blue-600 py-2">Projects</a>
+                    <a href="resume.html" class="font-medium text-blue-600 py-2 border-b-2 border-blue-600">Resume</a>
+                    <a href="contact.html" class="font-medium text-gray-700 hover:text-blue-600 py-2">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="window.print()" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium">
+                        <i class="fas fa-print mr-2"></i> Print
+                    </button>
+                    <div class="md:hidden">
+                        <button id="menuBtn" class="text-gray-700">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <ul class="skill-list">
-                        <li>Python (Advanced)</li>
-                        <li>JavaScript/TypeScript</li>
-                        <li>SQL</li>
-                        <li>Bash/Shell</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Backend & APIs</h3>
-                    <ul class="skill-list">
-                        <li>FastAPI</li>
-                        <li>Django / Flask</li>
-                        <li>RESTful API Design</li>
-                        <li>GraphQL</li>
-                        <li>WebSockets</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>AI & Machine Learning</h3>
-                    <ul class="skill-list">
-                        <li>TensorFlow / PyTorch</li>
-                        <li>HuggingFace Transformers</li>
-                        <li>Scikit-learn</li>
-                        <li>NLP (SpaCy, NLTK)</li>
-                        <li>Prophet / Time Series</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Data & Databases</h3>
-                    <ul class="skill-list">
-                        <li>PostgreSQL / MySQL</li>
-                        <li>MongoDB</li>
-                        <li>Redis</li>
-                        <li>Pandas / NumPy</li>
-                        <li>Data Visualization</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Frontend Development</h3>
-                    <ul class="skill-list">
-                        <li>React / Vue.js</li>
-                        <li>HTML5 / CSS3</li>
-                        <li>Tailwind CSS</li>
-                        <li>Chart.js / D3.js</li>
-                        <li>HTMX</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>DevOps & Tools</h3>
-                    <ul class="skill-list">
-                        <li>Docker / Docker Compose</li>
-                        <li>Git / GitHub Actions</li>
-                        <li>AWS / Digital Ocean</li>
-                        <li>Nginx / Gunicorn</li>
-                        <li>CI/CD Pipelines</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>Web Scraping & Automation</h3>
-                    <ul class="skill-list">
-                        <li>Scrapy / BeautifulSoup</li>
-                        <li>Selenium / Playwright</li>
-                        <li>API Integration</li>
-                        <li>Task Scheduling (Celery)</li>
-                    </ul>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>SEO & Marketing</h3>
-                    <ul class="skill-list">
-                        <li>Technical SEO</li>
-                        <li>Google Analytics / GSC</li>
-                        <li>Keyword Research</li>
-                        <li>Content Strategy</li>
-                        <li>SERP Analysis</li>
-                    </ul>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+                <div class="flex flex-col py-2">
+                    <a href="index.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50">Home</a>
+                    <a href="projects.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50">Projects</a>
+                    <a href="resume.html" class="px-4 py-3 font-medium text-blue-600 bg-blue-50">Resume</a>
+                    <a href="contact.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50">Contact</a>
                 </div>
             </div>
         </div>
+    </nav>
 
-        <div class="section">
-            <h2 class="section-title">Featured Projects</h2>
-            
-            <div class="project-item">
-                <h3>AI-Powered Sentiment Analysis Platform</h3>
-                <p class="meta">FastAPI • HuggingFace • PostgreSQL • React</p>
-                <p class="description">
-                    Production-ready sentiment analysis system processing 50k+ texts/hour with 92% accuracy. 
-                    Features real-time analysis, CSV batch processing, and developer API.
-                </p>
-                <ul class="achievements">
-                    <li>Built ensemble ML model combining BERT, VADER, and TextBlob</li>
-                    <li>Implemented Redis caching reducing API response time to <200ms</li>
-                    <li>Created interactive dashboard with Chart.js for data visualization</li>
-                    <li>Deployed with Docker achieving 99.9% uptime</li>
-                </ul>
-            </div>
-
-            <div class="project-item">
-                <h3>SEO Rank Tracker & Analyzer</h3>
-                <p class="meta">FastAPI • SERP APIs • MongoDB • Chart.js</p>
-                <p class="description">
-                    Professional SEO monitoring platform tracking 10k+ keywords daily with competitor analysis and automated reporting.
-                </p>
-                <ul class="achievements">
-                    <li>Automated rank tracking reducing manual work from 5hrs/week to zero</li>
-                    <li>Built predictive ML model for ranking trend forecasting</li>
-                    <li>Integrated multiple SERP APIs with intelligent failover system</li>
-                    <li>Generated $50k+ in keyword opportunities for clients</li>
-                </ul>
-            </div>
-
-            <div class="project-item">
-                <h3>Crypto Price Prediction System</h3>
-                <p class="meta">FastAPI • Scikit-learn • Plotly • CoinGecko API</p>
-                <p class="description">
-                    ML-powered cryptocurrency analytics with real-time price tracking, prediction models, and automated alerts.
-                </p>
-                <ul class="achievements">
-                    <li>Developed time-series ML models with 78% prediction accuracy</li>
-                    <li>Implemented WebSocket for real-time price updates</li>
-                    <li>Created interactive Plotly dashboards for trend analysis</li>
-                    <li>Built automated alert system for price movements</li>
-                </ul>
-            </div>
-
-            <div class="project-item">
-                <h3>Business Sales Forecasting System</h3>
-                <p class="meta">FastAPI • Prophet • Pandas • ReportLab</p>
-                <p class="description">
-                    Predictive analytics platform for sales forecasting with automated PDF reports and business recommendations.
-                </p>
-                <ul class="achievements">
-                    <li>Implemented Prophet algorithm for accurate sales predictions</li>
-                    <li>Automated weekly report generation with actionable insights</li>
-                    <li>Built admin panel for data management and visualization</li>
-                    <li>Helped businesses improve forecasting accuracy by 35%</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">Professional Experience</h2>
-            
-            <div class="experience-item">
-                <h3>Senior Python Developer & AI Specialist</h3>
-                <p class="meta">Freelance • 2020 - Present</p>
-                <ul class="achievements">
-                    <li>Developed 15+ production AI/ML applications for diverse clients</li>
-                    <li>Specialized in NLP, sentiment analysis, and predictive modeling</li>
-                    <li>Built RESTful APIs handling millions of requests monthly</li>
-                    <li>Implemented CI/CD pipelines reducing deployment time by 70%</li>
-                    <li>Mentored junior developers on best practices and clean code</li>
-                </ul>
-            </div>
-
-            <div class="experience-item">
-                <h3>SEO Specialist & Automation Engineer</h3>
-                <p class="meta">Digital Marketing Agency • 2018 - 2020</p>
-                <ul class="achievements">
-                    <li>Increased organic traffic by 250% through technical SEO and automation</li>
-                    <li>Developed Python tools reducing manual SEO tasks by 80%</li>
-                    <li>Built custom rank tracking and reporting systems</li>
-                    <li>Managed SEO campaigns for 30+ enterprise clients</li>
-                    <li>Combined programming skills with SEO expertise for unique solutions</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title">Education & Certifications</h2>
-            
-            <div class="experience-item">
-                <h3>Bachelor of Science in Computer Science</h3>
-                <p class="meta">University Name • 2014 - 2018</p>
-                <p class="description">Focus on Software Engineering and Machine Learning</p>
-            </div>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
-                <div style="padding: 1rem; background: var(--bg-card); border-radius: 8px;">
-                    <strong style="color: var(--primary);">AWS Certified</strong>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem;">Solutions Architect</p>
+    <!-- Resume Content -->
+    <section class="py-8">
+        <div class="container mx-auto px-4">
+            <!-- Resume Header -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900">SAM BAQUIBILLAH (SAGOR)</h1>
+                        <h2 class="text-xl text-gray-700 mt-2">Full Stack Developer | Python/Django, Flask & Custom Dev Specialist</h2>
+                        <div class="flex flex-wrap gap-4 mt-4 text-gray-600">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt mr-2"></i> Dhaka, Bangladesh
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope mr-2"></i> sksagor007@gmail.com
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone mr-2"></i> +8801670-717102
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <div class="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full font-medium">
+                            <i class="fas fa-circle text-green-500 mr-2"></i> Available Immediately
+                        </div>
+                    </div>
                 </div>
-                <div style="padding: 1rem; background: var(--bg-card); border-radius: 8px;">
-                    <strong style="color: var(--primary);">TensorFlow Developer</strong>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem;">Certificate</p>
-                </div>
-                <div style="padding: 1rem; background: var(--bg-card); border-radius: 8px;">
-                    <strong style="color: var(--primary);">Advanced SEO</strong>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem;">Certification</p>
+                <div class="flex flex-wrap gap-3 mt-6">
+                    <a href="https://github.com/sksagor" target="_blank" class="flex items-center text-gray-600 hover:text-gray-900">
+                        <i class="fab fa-github mr-2"></i> github.com/sksagor
+                    </a>
+                    <a href="https://sksam.pythonanywhere.com/" target="_blank" class="flex items-center text-gray-600 hover:text-blue-600">
+                        <i class="fas fa-globe mr-2"></i> sksam.pythonanywhere.com
+                    </a>
                 </div>
             </div>
-        </div>
 
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="#" class="download-btn" onclick="alert('Add your actual PDF resume link here'); return false;">
-                📄 Download PDF Resume
-            </a>
-        </div>
-    </div>
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Left Column -->
+                <div class="lg:w-2/3">
+                    <!-- Professional Summary -->
+                    <div class="resume-section bg-white rounded-xl shadow-sm p-6 mb-6">
+                        <h3 class="text-xl font-bold text-blue-600 mb-4 flex items-center">
+                            <i class="fas fa-user-tie mr-3"></i> PROFESSIONAL SUMMARY
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Full Stack Developer with 9+ years building scalable web applications and e-commerce solutions. 
+                            Expert in Python/Django ecosystem with extensive Shopify/WordPress experience. 
+                            Delivered 20+ full-stack projects, achieving 40% performance improvements and 45% traffic growth through optimized solutions.
+                        </p>
+                    </div>
 
-    <footer>
-        <p>&copy; 2026 SKSAM. Python Developer & AI Engineer.</p>
+                    <!-- Experience -->
+                    <div class="resume-section bg-white rounded-xl shadow-sm p-6 mb-6">
+                        <h3 class="text-xl font-bold text-blue-600 mb-4 flex items-center">
+                            <i class="fas fa-briefcase mr-3"></i> EXPERIENCE
+                        </h3>
+                        <div class="mb-6">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-lg font-bold">Full Stack Developer</h4>
+                                <span class="text-gray-600 font-medium">2010–Present</span>
+                            </div>
+                            <p class="text-gray-600 mb-3">Freelance/Contract (Remote & Part-time Based)</p>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                                    <span>Built Django-based SaaS platforms (Uptime Monitor, Student Management, Employee Systems)</span>
+                                </li>
+                                <li class="flex">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                                    <span>Developed Flask investment tracker with Vue.js frontend</span>
+                                </li>
+                                <li class="flex">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                                    <span>Created automated web scraping tools with data dashboards</span>
+                                </li>
+                                <li class="flex">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                                    <span>Multifunctional platforms WordPress Development</span>
+                                </li>
+                                <li class="flex">
+                                    <i class="fas fa-check text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                                    <span>SEO-optimized applications achieving 40% faster load times</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Projects Highlight -->
+                    <div class="resume-section bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-xl font-bold text-blue-600 mb-4 flex items-center">
+                            <i class="fas fa-project-diagram mr-3"></i> KEY PROJECTS
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold">AI-Powered Sentiment Analysis Platform</h4>
+                                <p class="text-gray-600 text-sm">FastAPI, React, PostgreSQL, HuggingFace</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Django SaaS Uptime & SEO Monitor</h4>
+                                <p class="text-gray-600 text-sm">Django, React, PostgreSQL, Celery</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Crypto Price Prediction System</h4>
+                                <p class="text-gray-600 text-sm">FastAPI, Pandas, Scikit-learn, Chart.js</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="lg:w-1/3">
+                    <!-- Skills -->
+                    <div class="resume-section bg-white rounded-xl shadow-sm p-6 mb-6">
+                        <h3 class="text-xl font-bold text-blue-600 mb-4">TECHNICAL STACK</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-bold mb-2">Backend</h4>
+                                <p class="text-gray-600">Python, Django, DRF, Flask, FastAPI, PHP, PostgreSQL, MySQL</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">Frontend</h4>
+                                <p class="text-gray-600">JavaScript, React, Vue.js, HTML5, CSS3, Tailwind, jQuery</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">E-commerce</h4>
+                                <p class="text-gray-600">Shopify (Themes/Apps), WordPress (Custom Themes/Plugins)</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-2">DevOps & Tools</h4>
+                                <p class="text-gray-600">Docker, AWS, Git, Nginx, C-Panel, Redis, Celery, Pytest, VS Code</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="resume-section bg-white rounded-xl shadow-sm p-6 mb-6">
+                        <h3 class="text-xl font-bold text-blue-600 mb-4">EDUCATION</h3>
+                        <div>
+                            <h4 class="font-bold">Computer Science</h4>
+                            <p class="text-gray-600">University of Technology</p>
+                            <p class="text-gray-500 text-sm">2012-2016</p>
+                        </div>
+                    </div>
+
+                    <!-- Skills Progress -->
+                    <div class="resume-section bg-white rounded-xl shadow-sm p-6">
+                        <h3 class="text-xl font-bold text-blue-600 mb-4">SKILLS PROFICIENCY</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Python/Django/Flask</span>
+                                    <span class="font-bold text-blue-600">95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">JavaScript/React</span>
+                                    <span class="font-bold text-green-600">90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Database Design</span>
+                                    <span class="font-bold text-purple-600">88%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-purple-600 h-2 rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download Button -->
+            <div class="mt-8 text-center no-print">
+                <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+                    <i class="fas fa-download mr-3"></i> Download PDF Resume
+                </a>
+                <p class="text-gray-500 text-sm mt-2">Print-friendly version available</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 no-print">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">Professional Resume</h3>
+                    <p class="text-gray-400">SAM BAQUIBILLAH - Full Stack Developer</p>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="index.html" class="text-gray-300 hover:text-white">Home</a>
+                    <a href="projects.html" class="text-gray-300 hover:text-white">Projects</a>
+                    <a href="resume.html" class="text-white">Resume</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white">Contact</a>
+                </div>
+                <div>
+                    <a href="contact.html" class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                        Hire Me
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
+                <p>© 2024 SAM BAQUIBILLAH. All professional information confidential.</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Print functionality
+        function printResume() {
+            window.print();
+        }
+    </script>
 </body>
 </html>
