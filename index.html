@@ -3,577 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKSAM - Python Developer & AI Engineer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>SAM BAQUIBILLAH | Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #00ff88;
-            --primary-dark: #00cc6a;
-            --bg-dark: #0a0e1a;
-            --bg-card: #141824;
-            --text-primary: #ffffff;
-            --text-secondary: #a0aec0;
-            --accent: #667eea;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animated gradient background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 50%);
-            z-index: -1;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Header */
-        header {
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            background: rgba(10, 14, 26, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 5% 6rem;
-            text-align: center;
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-weight: 400;
-        }
-
-        .hero .tagline {
-            font-size: 1rem;
-            color: var(--primary);
-            margin-bottom: 3rem;
-            font-weight: 400;
-        }
-
-        .skills-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem auto;
-            max-width: 800px;
-        }
-
-        .tag {
-            padding: 0.5rem 1.2rem;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid var(--primary);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--primary);
-            transition: all 0.3s;
-        }
-
-        .tag:hover {
-            background: var(--primary);
-            color: var(--bg-dark);
-            transform: translateY(-2px);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 4rem 5%;
-        }
-
-        .section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 4rem;
-            font-size: 1.1rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            animation: fadeInUp 0.6s ease;
-            animation-fill-mode: both;
-        }
-
-        .project-card:nth-child(1) { animation-delay: 0.1s; }
-        .project-card:nth-child(2) { animation-delay: 0.2s; }
-        .project-card:nth-child(3) { animation-delay: 0.3s; }
-        .project-card:nth-child(4) { animation-delay: 0.4s; }
-        .project-card:nth-child(5) { animation-delay: 0.5s; }
-        .project-card:nth-child(6) { animation-delay: 0.6s; }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        .project-badge {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: var(--primary);
-            color: var(--bg-dark);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            z-index: 10;
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .project-category {
-            font-size: 0.85rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            padding: 0.3rem 0.8rem;
-            background: rgba(102, 126, 234, 0.2);
-            border-radius: 4px;
-            font-size: 0.75rem;
-            color: var(--accent);
-        }
-
-        .project-link {
-            display: inline-block;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .project-link:hover {
-            color: var(--primary-dark);
-            transform: translateX(5px);
-        }
-
-        .project-link::after {
-            content: ' →';
-            transition: transform 0.3s;
-            display: inline-block;
-        }
-
-        .project-link:hover::after {
-            transform: translateX(5px);
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 6rem 5%;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 1rem;
-            border: 2px solid;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--bg-dark);
-            border-color: var(--primary);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: var(--bg-dark);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            padding: 3rem 5%;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            nav a {
-                margin-left: 1rem;
-                font-size: 0.8rem;
-            }
-        }
+        * { font-family: 'Inter', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .nav-active { color: #3b82f6; border-bottom: 2px solid #3b82f6; }
+        .skill-bar { transition: width 1s ease-in-out; }
     </style>
 </head>
-<body>
-    <header>
-        <div class="logo">SKSAM</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="resume.html">Resume</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>Python Developer<br>& AI Engineer</h1>
-        <p class="subtitle">Building intelligent systems that solve real-world problems</p>
-        <p class="tagline">FastAPI • Machine Learning • SEO Automation • Data Science</p>
-        
-        <div class="skills-tags">
-            <span class="tag">Python</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">Machine Learning</span>
-            <span class="tag">NLP</span>
-            <span class="tag">TensorFlow</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">Docker</span>
-            <span class="tag">React</span>
-            <span class="tag">SEO Expert</span>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white shadow-sm z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-gray-800"><span class="text-blue-600">SAM</span>BAQUIBILLAH</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="font-medium text-gray-700 hover:text-blue-600 py-2 border-b-2 border-transparent hover:border-blue-600">Home</a>
+                    <a href="projects.html" class="font-medium text-gray-700 hover:text-blue-600 py-2 border-b-2 border-transparent hover:border-blue-600">Projects</a>
+                    <a href="resume.html" class="font-medium text-gray-700 hover:text-blue-600 py-2 border-b-2 border-transparent hover:border-blue-600">Resume</a>
+                    <a href="contact.html" class="font-medium text-gray-700 hover:text-blue-600 py-2 border-b-2 border-transparent hover:border-blue-600">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menuBtn" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+                <div class="flex flex-col py-2">
+                    <a href="index.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600">Home</a>
+                    <a href="projects.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600">Projects</a>
+                    <a href="resume.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600">Resume</a>
+                    <a href="contact.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600">Contact</a>
+                </div>
+            </div>
         </div>
-    </section>
+    </nav>
 
-    <section class="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">Top-tier production-ready applications showcasing AI, automation, and full-stack development</p>
-        
-        <div class="projects-grid">
-            <!-- Project 1: Sentiment Analysis -->
-            <div class="project-card">
-                <span class="project-badge">🏆 TOP PICK</span>
-                <div class="project-content">
-                    <h3 class="project-title">AI-Powered Sentiment Analysis Platform</h3>
-                    <p class="project-category">AI • NLP • API Development</p>
-                    <p class="project-description">
-                        Real-time sentiment analysis system for Twitter/X posts, news headlines, and product reviews. 
-                        Features CSV upload, interactive dashboard with charts, and developer API endpoints.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">HuggingFace</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Redis</span>
+    <!-- Hero Section -->
+    <section class="pt-8 pb-12 md:pt-12 md:pb-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-4">
+                        <i class="fas fa-circle text-green-500 mr-2"></i> Available Immediately
                     </div>
-                    <a href="project-sentiment-analysis.html" class="project-link">View Project</a>
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                        SAM BAQUIBILLAH <span class="text-blue-600">(SAGOR)</span>
+                    </h1>
+                    <h2 class="text-xl text-gray-700 mb-6">
+                        Full Stack Developer | Python/Django, Flask Specialist
+                    </h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        9+ years building scalable web applications & e-commerce solutions. Expert in Python/Django ecosystem with extensive Shopify/WordPress experience. Delivered 20+ full-stack projects with 40% performance improvements.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-map-marker-alt mr-2"></i> Dhaka, Bangladesh
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-envelope mr-2"></i> sksagor007@gmail.com
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-phone mr-2"></i> +8801670-717102
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="projects.html" class="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
+                            View Projects
+                        </a>
+                        <a href="resume.html" class="px-5 py-2.5 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition font-medium">
+                            View Resume
+                        </a>
+                        <a href="contact.html" class="px-5 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium">
+                            Contact Me
+                        </a>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Project 2: SEO Rank Tracker -->
-            <div class="project-card">
-                <span class="project-badge">🔥 UNIQUE</span>
-                <div class="project-content">
-                    <h3 class="project-title">SEO Rank Tracker & Analyzer</h3>
-                    <p class="project-category">SEO • Automation • Data Analytics</p>
-                    <p class="project-description">
-                        Professional SEO monitoring system with Google ranking tracker, keyword analysis, and competitor 
-                        insights. Combines SEO expertise with Python automation for market advantage.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">SERP APIs</span>
-                        <span class="tech-tag">BeautifulSoup</span>
-                        <span class="tech-tag">Chart.js</span>
-                        <span class="tech-tag">MongoDB</span>
+                <div class="md:w-2/5">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-1 shadow-xl">
+                        <div class="bg-white rounded-2xl p-6">
+                            <div class="text-center mb-6">
+                                <div class="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center text-5xl font-bold text-blue-600">
+                                    SB
+                                </div>
+                                <h3 class="text-xl font-bold">Quick Stats</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Projects Completed</span>
+                                    <span class="font-bold text-blue-600">50+</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Years Experience</span>
+                                    <span class="font-bold text-blue-600">9+</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Client Satisfaction</span>
+                                    <span class="font-bold text-blue-600">100%</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700">Performance Gain</span>
+                                    <span class="font-bold text-blue-600">40%</span>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-6 border-t">
+                                <div class="flex justify-center space-x-4">
+                                    <a href="https://github.com/sksagor" target="_blank" class="text-gray-600 hover:text-gray-900">
+                                        <i class="fab fa-github text-xl"></i>
+                                    </a>
+                                    <a href="https://sksam.pythonanywhere.com/" target="_blank" class="text-gray-600 hover:text-blue-600">
+                                        <i class="fas fa-globe text-xl"></i>
+                                    </a>
+                                    <a href="#" class="text-gray-600 hover:text-blue-700">
+                                        <i class="fab fa-linkedin text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <a href="project-seo-tracker.html" class="project-link">View Project</a>
-                </div>
-            </div>
-
-            <!-- Project 3: Crypto Prediction -->
-            <div class="project-card">
-                <div class="project-content">
-                    <h3 class="project-title">Crypto Price Prediction System</h3>
-                    <p class="project-category">ML • Fintech • Real-time Data</p>
-                    <p class="project-description">
-                        Advanced cryptocurrency analytics with ML-powered price predictions, live price tracking, 
-                        interactive charts, and automated alert system using CoinGecko API.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">Plotly</span>
-                        <span class="tech-tag">CoinGecko API</span>
-                    </div>
-                    <a href="project-crypto-prediction.html" class="project-link">View Project</a>
-                </div>
-            </div>
-
-            <!-- Project 4: AI Resume Analyzer -->
-            <div class="project-card">
-                <div class="project-content">
-                    <h3 class="project-title">AI Resume Analyzer & Job Matcher</h3>
-                    <p class="project-category">AI • NLP • HR Tech</p>
-                    <p class="project-description">
-                        Intelligent CV parsing system that extracts skills, analyzes qualifications, and matches 
-                        candidates with relevant job opportunities using advanced NLP techniques.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">SpaCy</span>
-                        <span class="tech-tag">Transformers</span>
-                        <span class="tech-tag">PDF Parsing</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                    </div>
-                    <a href="project-resume-analyzer.html" class="project-link">View Project</a>
-                </div>
-            </div>
-
-            <!-- Project 5: Business Forecasting -->
-            <div class="project-card">
-                <div class="project-content">
-                    <h3 class="project-title">Business Sales Forecasting System</h3>
-                    <p class="project-category">ML • Business Analytics • Data Science</p>
-                    <p class="project-description">
-                        Predictive analytics platform for sales forecasting using Prophet and ARIMA models. 
-                        Features CSV import, automated reports, and actionable business recommendations.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">Prophet</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">ReportLab</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                    </div>
-                    <a href="project-sales-forecasting.html" class="project-link">View Project</a>
-                </div>
-            </div>
-
-            <!-- Project 6: Job Scraper -->
-            <div class="project-card">
-                <div class="project-content">
-                    <h3 class="project-title">Job Scraper & Market Analyzer</h3>
-                    <p class="project-category">Data Engineering • Web Scraping • Analytics</p>
-                    <p class="project-description">
-                        Automated job market intelligence tool that scrapes positions from LinkedIn and Indeed, 
-                        analyzes skill demand trends, and provides market insights using NLP.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">Scrapy</span>
-                        <span class="tech-tag">BeautifulSoup</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">NLP</span>
-                    </div>
-                    <a href="project-job-scraper.html" class="project-link">View Project</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta">
-        <h2>Let's Build Something Amazing</h2>
-        <div class="cta-buttons">
-            <a href="contact.html" class="btn btn-primary">Get In Touch</a>
-            <a href="resume.html" class="btn btn-secondary">View Resume</a>
+    <!-- Tech Stack -->
+    <section class="py-10 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-8">Technical Expertise</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-server text-blue-600"></i>
+                        </div>
+                        <h3 class="font-bold">Backend</h3>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        Python, Django, Flask, FastAPI, PostgreSQL, MySQL
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-code text-green-600"></i>
+                        </div>
+                        <h3 class="font-bold">Frontend</h3>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        React, Vue.js, JavaScript, Tailwind, HTML5, CSS3
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-shopping-cart text-purple-600"></i>
+                        </div>
+                        <h3 class="font-bold">E-commerce</h3>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        Shopify, WordPress, Custom Themes, Plugins
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-3">
+                        <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-cloud text-orange-600"></i>
+                        </div>
+                        <h3 class="font-bold">DevOps</h3>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        Docker, AWS, Git, Nginx, Redis, Celery
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 SKSAM. Python Developer & AI Engineer. All rights reserved.</p>
+    <!-- Experience Highlights -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-8">Experience Highlights</h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-start mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-briefcase text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Full Stack Developer</h3>
+                            <p class="text-gray-600">Freelance/Contract | 2010–Present</p>
+                            <p class="text-gray-500 text-sm mt-1">Remote & Part-time Based</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Built Django-based SaaS platforms (Uptime Monitor, Student Management Systems)</span>
+                        </div>
+                        <div class="flex">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Developed Flask investment tracker with Vue.js frontend</span>
+                        </div>
+                        <div class="flex">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>Created automated web scraping tools with data dashboards</span>
+                        </div>
+                        <div class="flex">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span>SEO-optimized applications achieving 40% faster load times</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">SAM BAQUIBILLAH</h3>
+                    <p class="text-gray-400">Full Stack Developer</p>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="index.html" class="text-gray-300 hover:text-white">Home</a>
+                    <a href="projects.html" class="text-gray-300 hover:text-white">Projects</a>
+                    <a href="resume.html" class="text-gray-300 hover:text-white">Resume</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white">Contact</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="https://github.com/sksagor" target="_blank" class="text-gray-300 hover:text-white">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://sksam.pythonanywhere.com/" target="_blank" class="text-gray-300 hover:text-white">
+                        <i class="fas fa-globe text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
+                <p>© 2024 SAM BAQUIBILLAH. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const btn = document.getElementById('menuBtn');
+            if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>
