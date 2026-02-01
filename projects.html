@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | SAM BAQUIBILLAH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .nav-active { color: #3b82f6; border-bottom: 2px solid #3b82f6; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white shadow-sm z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-xl font-bold text-gray-800"><span class="text-blue-600">SAM</span>BAQUIBILLAH</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="font-medium text-gray-700 hover:text-blue-600 py-2">Home</a>
+                    <a href="projects.html" class="font-medium text-blue-600 py-2 border-b-2 border-blue-600">Projects</a>
+                    <a href="resume.html" class="font-medium text-gray-700 hover:text-blue-600 py-2">Resume</a>
+                    <a href="contact.html" class="font-medium text-gray-700 hover:text-blue-600 py-2">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menuBtn" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+                <div class="flex flex-col py-2">
+                    <a href="index.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50">Home</a>
+                    <a href="projects.html" class="px-4 py-3 font-medium text-blue-600 bg-blue-50">Projects</a>
+                    <a href="resume.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50">Resume</a>
+                    <a href="contact.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Header -->
+    <section class="pt-8 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-3">Project Portfolio</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">20+ full-stack projects delivering 40% performance improvements and 45% traffic growth</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium">All</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">AI/ML</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Django</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">FastAPI</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">E-commerce</button>
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">WordPress</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="pb-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="card-hover bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-5">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold">AI Sentiment Analysis Platform</h3>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded">Top Pick</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Analyze sentiment from social media, news, and reviews with AI-powered scoring.</p>
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">FastAPI</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">React</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">PostgreSQL</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">AI/ML</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                            <a href="#" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card-hover bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-3">Crypto Price Prediction System</h3>
+                        <p class="text-gray-600 text-sm mb-4">ML-powered crypto analytics with live price tracking and prediction models.</p>
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">FastAPI</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">Pandas</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">ML</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">Chart.js</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                            <a href="#" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="card-hover bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-3">SEO Rank Tracker & Analyzer</h3>
+                        <p class="text-gray-600 text-sm mb-4">Track Google rankings, monitor keywords, and analyze competitor SEO.</p>
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">FastAPI</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">SERP API</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">Dashboard</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">SEO</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                            <a href="#" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="card-hover bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-3">Django SaaS Uptime Monitor</h3>
+                        <p class="text-gray-600 text-sm mb-4">Automated website performance & SEO tracking system with real-time monitoring.</p>
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">Django</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">React</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">PostgreSQL</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">Celery</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                            <a href="#" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="card-hover bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-3">Online Marketplace</h3>
+                        <p class="text-gray-600 text-sm mb-4">Full-featured e-commerce platform with modern UI and robust backend.</p>
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">Django</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">React</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">PostgreSQL</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">Stripe</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                            <a href="#" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="card-hover bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-3">SaaS Authentication System</h3>
+                        <p class="text-gray-600 text-sm mb-4">Production-ready JWT auth with OAuth login and role-based access.</p>
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">FastAPI</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">JWT</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">OAuth2</span>
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded">Docker</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <a href="#" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                            <a href="#" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Stats -->
+            <div class="mt-12 bg-white rounded-xl p-6 shadow-sm">
+                <h3 class="text-xl font-bold mb-6">Project Impact</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600 mb-2">20+</div>
+                        <div class="text-gray-600">Full-stack Projects</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 mb-2">40%</div>
+                        <div class="text-gray-600">Performance Improvement</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-600 mb-2">45%</div>
+                        <div class="text-gray-600">Traffic Growth</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-orange-600 mb-2">100%</div>
+                        <div class="text-gray-600">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">Project Portfolio</h3>
+                    <p class="text-gray-400">Full Stack Development</p>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="index.html" class="text-gray-300 hover:text-white">Home</a>
+                    <a href="projects.html" class="text-white">Projects</a>
+                    <a href="resume.html" class="text-gray-300 hover:text-white">Resume</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white">Contact</a>
+                </div>
+                <div>
+                    <a href="contact.html" class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                        Start a Project
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
+                <p>© 2024 SAM BAQUIBILLAH. All projects are proprietary or available per client agreement.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
