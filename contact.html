@@ -4,249 +4,1014 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | SAM BAQUIBILLAH</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Inter', sans-serif; }
-        .nav-active { color: #3b82f6; border-bottom: 2px solid #3b82f6; }
-        .contact-card { transition: all 0.3s ease; }
-        .contact-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        :root {
+            --primary: #0066FF;
+            --primary-dark: #0052CC;
+            --secondary: #7B61FF;
+            --dark: #0F172A;
+            --gray-900: #1E293B;
+            --gray-800: #334155;
+            --gray-700: #475569;
+            --gray-600: #64748B;
+            --gray-500: #94A3B8;
+            --gray-400: #CBD5E1;
+            --gray-300: #E2E8F0;
+            --gray-200: #F1F5F9;
+            --gray-100: #F8FAFC;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-300);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--gray-300);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: rgba(0, 102, 255, 0.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 60px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.05), rgba(123, 97, 255, 0.05));
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-700);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--success);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .availability i {
+            font-size: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        @media (max-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--gray-200);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-800);
+            font-size: 0.95rem;
+        }
+
+        .form-group.required label::after {
+            content: ' *';
+            color: var(--danger);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--gray-800);
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+        }
+
+        .form-control.error {
+            border-color: var(--danger);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-top: 0.25rem;
+        }
+
+        .form-submit {
+            margin-top: 2rem;
+        }
+
+        /* Contact Info */
+        .contact-info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-card h3 {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+            color: var(--dark);
+        }
+
+        .contact-details p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-details small {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Response Time Card */
+        .response-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .response-card h3 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .response-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .response-item:last-child {
+            border-bottom: none;
+        }
+
+        .response-item span:first-child {
+            font-weight: 500;
+        }
+
+        .response-item span:last-child {
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .availability-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-top: 1.5rem;
+        }
+
+        .availability-badge i {
+            color: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 4rem 0;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .faq-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .faq-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .faq-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-contact {
+            color: var(--gray-400);
+            font-size: 0.95rem;
+        }
+
+        .footer-contact i {
+            color: var(--primary);
+            margin-right: 10px;
+            width: 16px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.25rem; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 120px 0 40px; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .contact-form { padding: 2rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            .container { padding: 0 16px; }
+            .contact-form { padding: 1.5rem; }
+            .contact-info-card, .response-card { padding: 1.5rem; }
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
     <!-- Navigation -->
-    <nav class="sticky top-0 bg-white shadow-sm z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <a href="index.html" class="text-xl font-bold text-gray-800"><span class="text-blue-600">SAM</span>BAQUIBILLAH</a>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="index.html" class="font-medium text-gray-700 hover:text-blue-600 py-2">Home</a>
-                    <a href="projects.html" class="font-medium text-gray-700 hover:text-blue-600 py-2">Projects</a>
-                    <a href="resume.html" class="font-medium text-gray-700 hover:text-blue-600 py-2">Resume</a>
-                    <a href="contact.html" class="font-medium text-blue-600 py-2 border-b-2 border-blue-600">Contact</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="menuBtn" class="text-gray-700">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
-                <div class="flex flex-col py-2">
-                    <a href="index.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50">Home</a>
-                    <a href="projects.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50">Projects</a>
-                    <a href="resume.html" class="px-4 py-3 font-medium text-gray-700 hover:bg-blue-50">Resume</a>
-                    <a href="contact.html" class="px-4 py-3 font-medium text-blue-600 bg-blue-50">Contact</a>
-                </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">SB</div>
+                <span>SAM BAQUIBILLAH</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="resume.html" class="nav-link">Resume</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+                <a href="contact.html" class="btn btn-primary">Hire Me</a>
             </div>
         </div>
     </nav>
 
-    <!-- Contact Header -->
-    <section class="pt-8 pb-6">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-900 mb-3">Get In Touch</h1>
-                <p class="text-gray-600 max-w-2xl mx-auto">Ready to bring your ideas to life? Let's discuss your project requirements.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="availability">
+                    <i class="fas fa-circle"></i>
+                    Available Immediately
+                </div>
+                <h1>Get In <span class="text-gradient">Touch</span></h1>
+                <p class="hero-subtitle">
+                    Ready to bring your ideas to life? Let's discuss your project requirements and build something amazing together.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Contact Content -->
-    <section class="pb-16">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Contact Form -->
-                <div class="lg:w-2/3">
-                    <div class="contact-card bg-white rounded-xl shadow-sm p-6">
-                        <h2 class="text-2xl font-bold mb-6">Send a Message</h2>
-                        <form id="contactForm">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <label for="name" class="block text-gray-700 mb-2">Name *</label>
-                                    <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-gray-700 mb-2">Email *</label>
-                                    <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required>
-                                </div>
-                            </div>
-                            <div class="mb-6">
-                                <label for="subject" class="block text-gray-700 mb-2">Subject (Optional)</label>
-                                <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
-                            </div>
-                            <div class="mb-6">
-                                <label for="message" class="block text-gray-700 mb-2">Message *</label>
-                                <textarea id="message" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" required></textarea>
-                                <div class="flex justify-between mt-2">
-                                    <span class="text-sm text-gray-500">Brief and specific messages get faster responses</span>
-                                    <span id="charCount" class="text-sm text-gray-500">0/500</span>
-                                </div>
-                            </div>
-                            <button type="submit" class="w-full md:w-auto px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
-                                Send Message <i class="fas fa-paper-plane ml-2"></i>
-                            </button>
-                        </form>
+    <section class="container">
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send a Message</h2>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group required">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group required">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject (Optional)</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Project brief or inquiry">
+                    </div>
+                    
+                    <div class="form-group required">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" required placeholder="Tell me about your project requirements, timeline, and budget..."></textarea>
+                        <div class="char-counter">
+                            <span id="charCount">0</span>/500 characters
+                        </div>
+                        <div class="text-sm text-gray-600 mt-1">Brief and specific messages get faster responses</div>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Info Sidebar -->
+            <div>
+                <div class="contact-info-card">
+                    <h3>Contact Information</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>sksagor007@gmail.com</p>
+                            <small>Primary contact method</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+8801670-717102</p>
+                            <small>Available for urgent projects</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Dhaka, Bangladesh</p>
+                            <small>Remote work available worldwide</small>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Contact Info -->
-                <div class="lg:w-1/3">
-                    <!-- Contact Details -->
-                    <div class="contact-card bg-white rounded-xl shadow-sm p-6 mb-6">
-                        <h3 class="text-xl font-bold mb-6">Contact Information</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                                    <i class="fas fa-envelope text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Email</h4>
-                                    <p class="text-gray-600">sksagor007@gmail.com</p>
-                                    <p class="text-gray-500 text-sm mt-1">Primary contact method</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                                    <i class="fas fa-phone text-green-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Phone</h4>
-                                    <p class="text-gray-600">+8801670-717102</p>
-                                    <p class="text-gray-500 text-sm mt-1">Available for urgent projects</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                                    <i class="fas fa-map-marker-alt text-purple-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Location</h4>
-                                    <p class="text-gray-600">Dhaka, Bangladesh</p>
-                                    <p class="text-gray-500 text-sm mt-1">Remote work available worldwide</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="response-card">
+                    <h3>Response Time</h3>
+                    
+                    <div class="response-item">
+                        <span>Weekdays</span>
+                        <span>24-48h</span>
                     </div>
-
-                    <!-- Response Time -->
-                    <div class="contact-card bg-blue-50 rounded-xl shadow-sm p-6">
-                        <h3 class="text-xl font-bold mb-6">Response Time</h3>
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="font-medium">Weekdays</span>
-                                <span class="font-bold">24-48h</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="font-medium">Weekends</span>
-                                <span class="font-bold">48-72h</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="font-medium">Urgent Projects</span>
-                                <span class="font-bold text-green-600">Phone Preferred</span>
-                            </div>
-                        </div>
-                        <div class="mt-6 pt-6 border-t border-blue-200">
-                            <div class="flex items-center">
-                                <i class="fas fa-circle text-green-500 mr-3"></i>
-                                <span class="font-bold">Currently Available for Projects</span>
-                            </div>
-                        </div>
+                    
+                    <div class="response-item">
+                        <span>Weekends</span>
+                        <span>48-72h</span>
+                    </div>
+                    
+                    <div class="response-item">
+                        <span>Urgent Projects</span>
+                        <span>Phone Preferred</span>
+                    </div>
+                    
+                    <div class="availability-badge">
+                        <i class="fas fa-circle"></i>
+                        <span>Currently Available for Projects</span>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- FAQ Section -->
-            <div class="mt-12">
-                <h2 class="text-2xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <h3 class="font-bold mb-3 flex items-center">
-                            <i class="fas fa-clock text-blue-500 mr-3"></i> What's the typical project timeline?
-                        </h3>
-                        <p class="text-gray-600">Typically 2-8 weeks depending on complexity. Small projects (2-4 weeks), medium projects (4-6 weeks), large projects (6-8+ weeks).</p>
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>What's the typical project timeline?</h3>
                     </div>
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <h3 class="font-bold mb-3 flex items-center">
-                            <i class="fas fa-dollar-sign text-green-500 mr-3"></i> What's your budget range?
-                        </h3>
-                        <p class="text-gray-600">Quotes provided after initial discussion based on project scope. Starting from $XXX for basic projects to $XXXX for complex solutions.</p>
+                    <p>Typically 2-8 weeks depending on complexity. Small projects (2-4 weeks), medium projects (4-6 weeks), large projects (6-8+ weeks).</p>
+                </div>
+                
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3>What's your budget range?</h3>
                     </div>
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <h3 class="font-bold mb-3 flex items-center">
-                            <i class="fas fa-file-contract text-purple-500 mr-3"></i> Do you sign NDAs?
-                        </h3>
-                        <p class="text-gray-600">Yes, I can sign NDA before discussion to protect your intellectual property and project confidentiality.</p>
+                    <p>Quotes provided after initial discussion based on project scope. Starting from $XXX for basic projects to $XXXX for complex solutions.</p>
+                </div>
+                
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3>Do you sign NDAs?</h3>
                     </div>
-                    <div class="bg-white rounded-xl p-6 shadow-sm">
-                        <h3 class="font-bold mb-3 flex items-center">
-                            <i class="fas fa-handshake text-orange-500 mr-3"></i> What's your availability?
-                        </h3>
-                        <p class="text-gray-600">Available immediately for new projects. Currently accepting 2-3 projects per month to ensure quality delivery.</p>
+                    <p>Yes, I can sign NDA before discussion to protect your intellectual property and project confidentiality.</p>
+                </div>
+                
+                <div class="faq-card">
+                    <div class="faq-header">
+                        <div class="faq-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>What's your availability?</h3>
                     </div>
+                    <p>Available immediately for new projects. Currently accepting 2-3 projects per month to ensure quality delivery.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-xl font-bold mb-2">Let's Work Together</h3>
-                    <p class="text-gray-400">Ready to start your project?</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>SAM BAQUIBILLAH</h3>
+                    <p style="color: var(--gray-400); margin-bottom: 1.5rem; font-size: 0.95rem;">
+                        Full Stack Developer specializing in Python/Django & modern frontend stacks with AI/ML integration.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com/sksagor" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://sksam.pythonanywhere.com/" target="_blank" class="social-link">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="flex space-x-6 mb-6 md:mb-0">
-                    <a href="index.html" class="text-gray-300 hover:text-white">Home</a>
-                    <a href="projects.html" class="text-gray-300 hover:text-white">Projects</a>
-                    <a href="resume.html" class="text-gray-300 hover:text-white">Resume</a>
-                    <a href="contact.html" class="text-white">Contact</a>
+
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
                 </div>
-                <div class="flex space-x-4">
-                    <a href="https://github.com/sksagor" target="_blank" class="text-gray-300 hover:text-white">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-                    <a href="https://sksam.pythonanywhere.com/" target="_blank" class="text-gray-300 hover:text-white">
-                        <i class="fas fa-globe text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-300 hover:text-blue-400">
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </a>
+
+                <div class="footer-col">
+                    <h3>Expertise</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Python/Django/Flask</a></li>
+                        <li><a href="#">AI/ML Integration</a></li>
+                        <li><a href="#">Modern Frontend</a></li>
+                        <li><a href="#">Full Stack Dev</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> sksagor007@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +8801670-717102</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
+                    </div>
                 </div>
             </div>
-            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
-                <p>© 2024 SAM BAQUIBILLAH. All rights reserved.</p>
+
+            <div class="footer-bottom">
+                <p>© 2024 SAM BAQUIBILLAH. All rights reserved. Crafted with modern web technologies.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('menuBtn').addEventListener('click', function() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        });
-
         // Character counter
         const messageTextarea = document.getElementById('message');
         const charCount = document.getElementById('charCount');
         
         messageTextarea.addEventListener('input', function() {
-            charCount.textContent = `${this.value.length}/500`;
+            const length = this.value.length;
+            charCount.textContent = length;
+            
+            if (length > 500) {
+                this.value = this.value.substring(0, 500);
+                charCount.textContent = 500;
+            }
+            
+            // Update color based on length
+            if (length > 450) {
+                charCount.style.color = 'var(--warning)';
+            } else if (length > 400) {
+                charCount.style.color = 'var(--gray-600)';
+            } else {
+                charCount.style.color = 'var(--gray-500)';
+            }
         });
 
-        // Form submission
+        // Form validation and submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            if (message.length < 10) {
+                alert('Please provide more details in your message (at least 10 characters).');
+                return;
+            }
+            
             // Here you would typically send the form data to a server
-            alert('Thank you for your message! I will respond within 24-48 hours.');
-            this.reset();
-            charCount.textContent = '0/500';
+            // For now, we'll just show a success message
+            
+            // Show success animation
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Success message
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                submitBtn.style.background = 'var(--success)';
+                
+                // Reset form
+                setTimeout(() => {
+                    this.reset();
+                    charCount.textContent = '0';
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '';
+                    
+                    // Show success notification
+                    showNotification('Thank you for your message! I will respond within 24-48 hours.');
+                }, 1500);
+            }, 1000);
+        });
+
+        // Show notification function
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: var(--success);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                font-weight: 500;
+            `;
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Add keyframes for animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.createElement('button');
+            menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            menuBtn.className = 'mobile-menu-btn';
+            menuBtn.style.cssText = `
+                display: none;
+                background: none;
+                border: none;
+                color: var(--gray-700);
+                font-size: 1.25rem;
+                cursor: pointer;
+            `;
+            
+            document.querySelector('.nav-container').appendChild(menuBtn);
+
+            function checkScreenWidth() {
+                if (window.innerWidth <= 768) {
+                    menuBtn.style.display = 'block';
+                    navLinks.style.display = 'none';
+                } else {
+                    menuBtn.style.display = 'none';
+                    navLinks.style.display = 'flex';
+                }
+            }
+
+            menuBtn.addEventListener('click', function() {
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.left = '0';
+                    navLinks.style.right = '0';
+                    navLinks.style.background = 'white';
+                    navLinks.style.padding = '1rem';
+                    navLinks.style.border = '1px solid var(--gray-300)';
+                    navLinks.style.borderRadius = '8px';
+                    navLinks.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+                }
+            });
+
+            window.addEventListener('resize', checkScreenWidth);
+            checkScreenWidth();
         });
     </script>
 </body>
